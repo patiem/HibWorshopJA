@@ -3,7 +3,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roots")
+@Table(name = "leafs")
 public class Leaf {
 
     @Id

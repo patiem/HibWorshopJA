@@ -2,6 +2,7 @@
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,16 +14,16 @@ public class Tree {
   @GenericGenerator(name="increment", strategy = "increment")
   private int id;
 
-  @Column(name = "species")
+  @Column(name = "species", nullable = false)
   private String species;
 
   @Column(name = "leafs")
-  @OneToMany(fetch = FetchType.EAGER)
-  private List<Leaf> leafs;
+  @OneToMany(mappedBy = "tree", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private List<Leaf> leafs = new ArrayList<>();
 
   @Column(name = "roots")
-  @OneToMany(fetch = FetchType.EAGER)
-  private List<Root> roots;
+  @OneToMany(cascade = CascadeType.ALL)
+  private List<Root> roots =  new ArrayList<>();
 
   public Tree() {
   }
@@ -57,5 +58,14 @@ public class Tree {
 
   public void setRoots(List<Root> roots) {
     this.roots = roots;
+  }
+
+  public void addLeaf(Leaf leaf) {
+    leafs.add(leaf);
+    leaf.setTree(this);
+  }
+
+  public void addRoot(Root root) {
+    roots.add(root);
   }
 }
