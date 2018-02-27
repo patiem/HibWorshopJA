@@ -12,11 +12,13 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <property name="connection.username">abc</property>
-        <property name="connection.password">mypass</property>
+        <property name="connection.password"></property>
 
 
         <!--<mapping resource="blog/some/Message.hbm.xml"/>-->
-        <!--<mapping class="" ></mapping>-->
+        <mapping class="Tree" ></mapping>
+        <mapping class="Leaf" ></mapping>
+        <mapping class="Root" ></mapping>
 
 
 

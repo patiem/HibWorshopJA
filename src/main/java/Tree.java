@@ -2,6 +2,7 @@
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "trees")
@@ -15,6 +16,13 @@ public class Tree {
   @Column(name = "species")
   private String species;
 
+  @Column(name = "leafs")
+  @OneToMany(fetch = FetchType.EAGER)
+  private List<Leaf> leafs;
+
+  @Column(name = "roots")
+  @OneToMany(fetch = FetchType.EAGER)
+  private List<Root> roots;
 
   public Tree() {
   }
@@ -33,5 +41,21 @@ public class Tree {
 
   public void setSpecies(String species) {
     this.species = species;
+  }
+
+  public List<Leaf> getLeafs() {
+    return leafs;
+  }
+
+  public void setLeafs(List<Leaf> leafs) {
+    this.leafs = leafs;
+  }
+
+  public List<Root> getRoots() {
+    return roots;
+  }
+
+  public void setRoots(List<Root> roots) {
+    this.roots = roots;
   }
 }
